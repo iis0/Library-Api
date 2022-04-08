@@ -8,7 +8,7 @@ const Library = require('../objs/library');
 const app = express();
 const bookStore = new Library();
 
-const port = 3000;
+const port = 8080;
 const hostname = 'localhost';
 loadBooks();
 
@@ -20,6 +20,10 @@ app.use(cors());
 app.use(morgan());
 app.use(helmet());
 app.use(bodyParser.json());
+
+app.get('/', (req, res) => {
+    res.send('Library API v1.0.3')
+})
 
 app.get('/search/title/:title', (req, res) => {
     let { title } = req.params;
